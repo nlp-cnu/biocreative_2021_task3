@@ -16,8 +16,12 @@ if __name__ == '__main__':
     pos_tweets = []
     t0 = "BioCreative_TrainTask3.0.tsv"
     t1 = "BioCreative_TrainTask3.1.tsv"
+    val = "BioCreative_ValTask3.tsv"
+
     for tweet in tsv_reader(t0):
         pos_tweets.append(tweet)
     for tweet in tsv_reader(t1):
+        pos_tweets.append(tweet)
+    for tweet in tsv_reader(val):
         pos_tweets.append(tweet)
     positive_only(pos_tweets)
