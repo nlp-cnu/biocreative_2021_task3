@@ -31,10 +31,11 @@ def tsv_reader(fname):
                 num_positives += 1
                 length = int(line[5]) - int(line[4])
                 if length != len(str(drug)):
-                    wrong_annotations.append("'%s' becomes '%s'" % (span, drug))
+                    wrong_annotations.append([int(line[4]), int(line[5]), length, span, drug])
+                                            #start, end, length, span, drug
 
         file.close()
-        return pos_tweets
+        return wrong_annotations
 
 
 def write_drugs(fname, drugs_list):
@@ -47,22 +48,22 @@ def write_drugs(fname, drugs_list):
         writer.writerow(drugs_nd)
 
 
-# if __name__ == "__main__":
-#     t0 = "BioCreative_TrainTask3.0.tsv"
-#     t1 = "BioCreative_TrainTask3.1.tsv"
-#     val = "BioCreative_ValTask3.tsv"
-#
-#     drugs_train0 = tsv_reader(t0)
-#     drugs_train1 = tsv_reader(t1)
-#     drugs = []
-#
-#     for i in drugs_train0:
-#         drugs.append(i)
-#
-#     for j in drugs_train1:
-#         if j not in drugs:
-#             drugs.append(j)
-#
-#     write_drugs("Drugs_Database", drugs)
-#
-#     tsv_reader(t0)
+if __name__ == "__main__":
+    t0 = "BioCreative_TrainTask3.0.tsv"
+    t1 = "BioCreative_TrainTask3.1.tsv"
+    val = "BioCreative_ValTask3.tsv"
+
+    # drugs_train0 = tsv_reader(t0)
+    # drugs_train1 = tsv_reader(t1)
+    # drugs = []
+    #
+    # for i in drugs_train0:
+    #     drugs.append(i)
+    #
+    # for j in drugs_train1:
+    #     if j not in drugs:
+    #         drugs.append(j)
+
+    # write_drugs("Drugs_Database", drugs)
+
+    tsv_reader(t0)

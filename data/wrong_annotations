@@ -1,0 +1,42 @@
+start	end	length	span	drug
+16	26	10	night quil	nyquil
+45	54	9	Benadryls	benadryl
+23	27	4	depo	depo-provera
+59	77	18	injections for IVF	IVF injection
+0	9	9	Prenatals	prenatal vitamins
+23	33	10	painkilers	painkillers
+43	52	9	prenatals	prenatal vitamins
+34	45	11	painkillers	pain medicine
+23	28	5	percs	percocet
+88	99	11	anaesthetic	anesthetic
+41	55	14	prenatal pills	prenatal vitamins
+112	120	8	flu shot	flu vaccine
+20	27	7	nitrous	nitrous oxide
+62	69	7	nitrous	nitrous oxide
+86	95	9	prenatals	prenatal vitamins
+54	67	13	epilepsy meds	epilepsy medication
+81	94	13	headache meds	headache medication
+7	18	11	Rhogam shot	rhogam injection
+25	34	9	pain meds	pain medication
+28	36	8	pictocin	pitocin
+9	13	4	oxys	oxycodone
+0	13	13	Nasal flu vac	nasal flu vaccine
+59	68	9	pain meds	pain medication
+0	17	17	Tylenol + Codeine	Tylenol-codeine
+19	33	14	muscle relaxer	muscle relaxers
+6	15	9	pain meds	pain medication
+29	45	16	prenatal vitamin	prenatal vitamins
+30	34	4	depo	depo-provera
+0	15	15	Muscle relaxers	muscle relaxer
+34	40	6	Asprin	aspirin
+17	31	14	Vicks Vapo rub	vicks vaporub
+7	19	12	PAIN KILLERS	pain medication
+39	48	9	prenatals	prenatal vitamins
+23	31	8	Tylenol3	tylenol #3
+10	27	17	anti-anxiety meds	anti-anxiety medication
+31	40	9	Vicodeine	vicodin
+87	95	8	Tylenol3	tylenol #3
+49	63	14	sleeping pills	sleeping pill
+29	41	12	anxiety meds	anxiety medication
+116	123	7	Rennies	rennie
+31	35	4	Tdap	Tdap vaccine
