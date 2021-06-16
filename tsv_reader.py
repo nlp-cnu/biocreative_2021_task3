@@ -3,7 +3,6 @@ import os, csv
 
 def tsv_reader(fname):
     fpath = os.path.join("data", fname)
-    print("path:", fpath)
     if not os.path.exists(fpath):
         print("file not found")
         return
@@ -35,17 +34,25 @@ def tsv_reader(fname):
                                             #start, end, length, span, drug
 
         file.close()
-        return wrong_annotations
+        return drugs
+
+
+def read_rxnorm():
+    with open("data\RXNORM.RRF", "rt") as rxfile:
+        reader = csv.reader(rxfile, delimiter='|', lineterminator='\n')
+        drugs_list = []
+        for line in reader:
+            drugs_list.append(line[14])
+        rxfile.close()
+    return drugs_list
 
 
 def write_drugs(fname, drugs_list):
     fpath = os.path.join("data", fname)
     with open(fpath, 'wt') as file:
-        writer = csv.writer(file, quoting=csv.QUOTE_ALL)
-        drugs_list.sort()
-        drugs_nd = []
-        [drugs_nd.append(x) for x in drugs_list if x not in drugs_nd]
-        writer.writerow(drugs_nd)
+        writer = csv.writer(file, delimiter="\n", quoting=csv.QUOTE_ALL)
+        # drugs_list.sort()
+        writer.writerow(drugs_list)
 
 
 if __name__ == "__main__":
@@ -53,17 +60,22 @@ if __name__ == "__main__":
     t1 = "BioCreative_TrainTask3.1.tsv"
     val = "BioCreative_ValTask3.tsv"
 
-    # drugs_train0 = tsv_reader(t0)
-    # drugs_train1 = tsv_reader(t1)
-    # drugs = []
-    #
-    # for i in drugs_train0:
-    #     drugs.append(i)
-    #
-    # for j in drugs_train1:
-    #     if j not in drugs:
-    #         drugs.append(j)
+    drugs_train0 = tsv_reader(t0)
+    drugs_train1 = tsv_reader(t1)
+    drugs_rxnorm = read_rxnorm()
+    drugs = []
 
-    # write_drugs("Drugs_Database", drugs)
+    for i in drugs_train0:
+        drugs.append(i)
 
-    tsv_reader(t0)
+    for j in drugs_train1:
+        if j not in drugs:
+            drugs.append(j)
+
+    for x in drugs_rxnorm:
+        # if x not in drugs:
+        drugs.append(x)
+
+
+    write_drugs("Drugs_Database.csv", drugs)
+
