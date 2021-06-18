@@ -1,0 +1,28 @@
+class Tweet(object):
+    def __init__(self, twid, text=''):
+        self.twid = twid
+        self.text = text
+
+        self.contains_drug = False
+        self.anns = []
+        self.span = ''
+        self.drug = ''
+
+    def __str__(self):
+        if not self.contains_drug:
+            return "%s\t%s\t-\t-\t-\t-" % (self.twid, self.text)
+        else:
+            return "%s\t%s\t%d\t%d\t%s\t%s" % (self.twid, self.text, self.anns[0], self.anns[1]
+                                               , self.span, self.drug)
+
+    def id(self):
+        return self.twid
+
+    def pop(self, start, end, span, drug):
+        self.contains_drug = True
+        self.anns.append(start)
+        self.anns.append(end)
+        self.span = span
+        self.drug = drug
+
+

@@ -1,6 +1,5 @@
 import os, csv
 
-
 def tsv_reader(fname):
     fpath = os.path.join("data", fname)
     if not os.path.exists(fpath):
@@ -48,7 +47,7 @@ def read_rxnorm():
 
 
 def write_drugs(fname, drugs_list):
-    fpath = os.path.join("data", fname)
+    fpath = os.path.join("lexicon_app", fname)
     with open(fpath, 'wt') as file:
         writer = csv.writer(file, delimiter="\n", quoting=csv.QUOTE_ALL)
         # drugs_list.sort()
@@ -72,10 +71,10 @@ if __name__ == "__main__":
         if j not in drugs:
             drugs.append(j)
 
-    for x in drugs_rxnorm:
-        # if x not in drugs:
-        drugs.append(x)
+    # for x in drugs_rxnorm:
+    #     # if x not in drugs:
+    #     drugs.append(x)
 
 
-    write_drugs("Drugs_Database.csv", drugs)
+    write_drugs("Training_only.csv", drugs)
 
