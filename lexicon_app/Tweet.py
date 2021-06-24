@@ -8,21 +8,26 @@ class Tweet(object):
         self.span = ''
         self.drug = ''
 
-    def __str__(self):
+    def list(self):
         if not self.contains_drug:
-            return "%s\t%s\t-\t-\t-\t-" % (self.twid, self.text)
+            # return "%s\t%s\t-\t-\t-\t-" % (self.twid, self.text)
+            return [self.twid, self.text, '-', '-', '-', '-']
         else:
-            return "%s\t%s\t%d\t%d\t%s\t%s" % (self.twid, self.text, self.anns[0], self.anns[1]
-                                               , self.span, self.drug)
+            # return "%s\t%s\t%d\t%d\t%s\t%s" % (self.twid, self.text, self.anns[0], self.anns[1]
+            #                                    , self.span, self.drug)
+            return [self.twid, self.text, self.anns[0], self.anns[1], self.span, self.drug]
+
+
 
     def id(self):
         return self.twid
 
     def pop(self, start, end, span, drug):
-        self.contains_drug = True
-        self.anns.append(start)
-        self.anns.append(end)
-        self.span = span
-        self.drug = drug
+        if not self.contains_drug:
+            self.contains_drug = True
+            self.anns.append(start)
+            self.anns.append(end)
+            self.span = span
+            self.drug = drug
 
 
