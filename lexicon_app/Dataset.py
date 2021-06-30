@@ -36,7 +36,10 @@ class Dataset(object):
                               tweet.text[int(match.start()): int(match.end())], drug)
 
     def get_tweets(self):
-        return self.tweets
+        final = []
+        for tweet in self.tweets:
+            final.append(tweet.list())
+        return final
 
     def positive_only(self):
         final = []
@@ -46,10 +49,11 @@ class Dataset(object):
         return final
 
     def write_results(self, fpath):
-        with open(fpath, 'wt', encoding="utf") as file:
-            writer = csv.writer(file, delimiter="\t")
-            writer.writerow(['tweet_id', 'text', 'start', 'end', 'span', 'drug'])
-            for tweet in self.tweets:
-                writer.writerow(tweet.list())
+        with open(fpath, 'wt', newline='', encoding="utf") as file:
+            writer = csv.writer(file, delimiter="\t", quoting=csv.QUOTE_NONE)
+            # writer.writerow(['# of positive results: %s out of %s' % (len(self.positive_only()) ,len(self.tweets))])
+            file.write('tweet_id\tuser_id\tcreated_at\ttext\tstart\tend\tspan\tdrug\n')
+            writer.writerows(self.get_tweets())
             file.close()
+
 

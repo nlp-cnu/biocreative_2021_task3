@@ -4,11 +4,12 @@ from Dataset import Dataset
 """
 Implementation script of lexicon approach to BioCreative Task 3
 Steps to Implement:
-1) Create list of Tweet objects from file reading, following parameters Tweet(twid, text)
+1) Create list of Tweet objects from file reading, following parameters Tweet(twid, userid, created, text)
 """
 t0 = os.path.join("data", "BioCreative_TrainTask3.0.tsv")
+val = os.path.join("data", "BioCreative_ValTask3.tsv")
 
-if not os.path.exists(t0):
+if not os.path.exists(val):
     print("file not found")
     pass
 twt_list = []
@@ -16,7 +17,7 @@ with open(t0, 'rt', encoding=("utf")) as twt_file:
     reader = csv.reader(twt_file, delimiter="\t")
     for line in reader:
         if line[0] != "tweet_id":
-            twt_list.append(Tweet(line[0], line[3]))
+            twt_list.append(Tweet(line[0], line[1], line[2], line[3]))
 
 """
 2) Create Dataset(tweets, lex_fpath, lex_delim) where
@@ -39,6 +40,6 @@ run.check()
     - Dataset.write_results(fpath): with fpath as the desired file path, writes csv format
         of all tweets with positive results updated
 """
-# run.write_results(os.path.join("lexicon_app", "test", "TrainTask3.0_UsingTrainingOnly.tsv"))
-for i in run.positive_only():
-    print(i)
+run.write_results(os.path.join("lexicon_app", "test", "ValTask3.0_UsingTrainingOnly.tsv"))
+# for i in run.positive_only():
+#     print(i)
