@@ -9,7 +9,7 @@ Steps to Implement:
 t0 = os.path.join("data", "BioCreative_TrainTask3.0.tsv")
 val = os.path.join("data", "BioCreative_ValTask3.tsv")
 
-if not os.path.exists(val):
+if not os.path.exists(t0):
     print("file not found")
     pass
 twt_list = []
@@ -40,6 +40,10 @@ run.check()
     - Dataset.write_results(fpath): with fpath as the desired file path, writes csv format
         of all tweets with positive results updated
 """
-run.write_results(os.path.join("lexicon_app", "test", "ValTask3.0_UsingTrainingOnly.tsv"))
-# for i in run.positive_only():
-#     print(i)
+run.write_results(os.path.join("lexicon_app", "test", "TrainTask3.0_UsingTrainingOnly.tsv"))
+run.print_results()
+with open(os.path.join("test", "Lexicon_Data.log"), "wt") as file:
+    file.write("Data Log for Lexicon Results:")
+    file.write("Training as Dictionary:")
+    file.write(run.print_results())
+    file.close()

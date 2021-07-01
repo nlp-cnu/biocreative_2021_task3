@@ -31,9 +31,10 @@ class Dataset(object):
         """
         for tweet in self.tweets:
             for drug in self.lexicon.values():
-                for match in re.finditer(drug, tweet.text):
-                    tweet.pop(match.start(), match.end(),
-                              tweet.text[int(match.start()): int(match.end())], drug)
+                if (' ' + drug + ' ') in (' ' + tweet.text + ' '):
+                    for match in re.finditer(drug, tweet.text):
+                        tweet.pop(match.start(), match.end(),
+                                  tweet.text[int(match.start()): int(match.end())], drug)
 
     def get_tweets(self):
         final = []
@@ -56,4 +57,6 @@ class Dataset(object):
             writer.writerows(self.get_tweets())
             file.close()
 
+    def print_results(self):
+        print(['# of positive results: %s out of %s' % (len(self.positive_only()) ,len(self.tweets))])
 
