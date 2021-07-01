@@ -10,11 +10,9 @@ t0 = os.path.join("data", "BioCreative_TrainTask3.0.tsv")
 t1 = os.path.join("data", "BioCreative_TrainTask3.1.tsv")
 val = os.path.join("data", "BioCreative_ValTask3.tsv")
 
-if not os.path.exists(t1):
-    print("file not found")
-    pass
+
 twt_list = []
-with open(t0, 'rt', encoding=("utf")) as twt_file:
+with open(val, 'rt', encoding=("utf")) as twt_file:
     reader = csv.reader(twt_file, delimiter="\t")
     for line in reader:
         if line[0] != "tweet_id":
@@ -41,8 +39,8 @@ run.check()
     - Dataset.write_results(fpath): with fpath as the desired file path, writes csv format
         of all tweets with positive results updated
 """
-run.write_results(os.path.join("lexicon_app", "test", "TrainTask3.1_UsingTrainingOnly.tsv"))
-# run.print_results()
+run.write_results(os.path.join("lexicon_app", "test", "ValTask3.0_UsingTrainingOnly.tsv"))
+run.print_results()
 # with open(os.path.join("test", "Lexicon_Data.log"), "wt") as file:
 #     file.write("Data Log for Lexicon Results:")
 #     file.write("Training as Dictionary:")
