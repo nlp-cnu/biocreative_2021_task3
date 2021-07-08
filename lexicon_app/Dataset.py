@@ -20,21 +20,32 @@ class Dataset(object):
             key = 0
             for item in reader:
                 for i in item:
-                    lexicon[key] = i
+                    if i != "pill" and i != "shot" and i != "shots":
+                        lexicon[key] = i
                 key += 1
         self.lexicon = lexicon
 
-    def check(self):
+    def check(self, subwords_bool, stop_words_bool):
         """
         runs lexicon search on tweets in list, call pop(start, end, span, drug) for positive drugs
         :return: none
         """
+        if stop_words_bool:
+            self.lexicon[len(self.lexicon) + 1] = "pill"
+            self.lexicon[len(self.lexicon) + 1] = "shot"
+            self.lexicon[len(self.lexicon) + 1] = "shots"
+
         for tweet in self.tweets:
             for drug in self.lexicon.values():
-                if (' ' + drug + ' ') in (' ' + tweet.text + ' '):
+                if subwords_bool:
                     for match in re.finditer(drug, tweet.text):
-                        tweet.pop(match.start(), match.end(),
-                                  tweet.text[int(match.start()): int(match.end())], drug)
+                            tweet.pop(match.start(), match.end(),
+                                      tweet.text[int(match.start()): int(match.end())], drug)
+                else:
+                    if (' ' + drug + ' ') in (' ' + tweet.text + ' '):
+                        for match in re.finditer(drug, tweet.text):
+                            tweet.pop(match.start(), match.end(),
+                                      tweet.text[int(match.start()): int(match.end())], drug)
 
     def get_tweets(self):
         final = []
@@ -50,13 +61,13 @@ class Dataset(object):
         return final
 
     def write_results(self, fpath):
-        with open(fpath, 'wt', newline='', encoding="utf") as file:
+        with open(fpath, 'w', newline='', encoding="utf") as file:
             writer = csv.writer(file, delimiter="\t", quoting=csv.QUOTE_NONE)
             # writer.writerow(['# of positive results: %s out of %s' % (len(self.positive_only()) ,len(self.tweets))])
             file.write('tweet_id\tuser_id\tcreated_at\ttext\tstart\tend\tspan\tdrug\n')
             writer.writerows(self.get_tweets())
             file.close()
 
-    def print_results(self):
-        print(['# of positive results: %s out of %s' % (len(self.positive_only()) ,len(self.tweets))])
+    def results(self):
+        return '# of positive results: %s/%s' % (len(self.positive_only()), len(self.tweets))
 
