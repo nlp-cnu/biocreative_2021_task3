@@ -20,7 +20,7 @@ def implementation(data, lex, stop_words_bool, subwords_bool, pred_name):
     1) Create list of Tweet objects from file reading, following parameters Tweet(twid, userid, created, text)
     """
     if data == "t0":
-        fpath = os.path.join("data", "BioCreative_TrainTask3.0.tsv")
+        fpath = os.path.join("data", "BioCreative_TrainTask3.tsv")
     elif data == "t1":
         fpath = os.path.join("data", "BioCreative_TrainTask3.1.tsv")
     elif data == "val":
@@ -77,11 +77,10 @@ def implementation(data, lex, stop_words_bool, subwords_bool, pred_name):
         - Dataset.write_results(fpath): with fpath as the desired file path, writes csv format
             of all tweets with positive results updated
     """
-    # run.write_results(os.path.join(pred_dir, pred_name))
+    run.write_results(os.path.join(pred_dir, pred_name))
 
-    # return pred_name + "\t%s\t%r\t%r\t" %\
-    #     (lex, stop_words_bool, subwords_bool) + run.results() + "\n"
-    return run.positive_only()
+    return pred_name + "\t%s\t%r\t%r\t" %\
+        (lex, stop_words_bool, subwords_bool) + run.results() + "\n"
 
     # with open(os.path.join("test", "Lexicon_Data.log"), "wt") as file:
     #     file.write("Data Log for Lexicon Results:")

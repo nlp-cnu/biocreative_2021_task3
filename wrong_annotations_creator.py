@@ -13,7 +13,7 @@ def wrong_annotations_creator(wrong_list, fname):
 
 
 if __name__ == "__main__":
-    t0 = "BioCreative_TrainTask3.0.tsv"
+    t0 = "BioCreative_TrainTask3.tsv"
     t1 = "BioCreative_TrainTask3.1.tsv"
     val = "BioCreative_ValTask3.tsv"
 

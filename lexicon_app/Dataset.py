@@ -21,7 +21,7 @@ class Dataset(object):
             for item in reader:
                 for i in item:
                     if i != "pill" and i != "shot" and i != "shots":
-                        lexicon[key] = i
+                        lexicon[i] = key
                 key += 1
         self.lexicon = lexicon
 
@@ -31,21 +31,26 @@ class Dataset(object):
         :return: none
         """
         if stop_words_bool:
-            self.lexicon[len(self.lexicon) + 1] = "pill"
-            self.lexicon[len(self.lexicon) + 1] = "shot"
-            self.lexicon[len(self.lexicon) + 1] = "shots"
+            self.lexicon["pill"] = len(self.lexicon) + 1
+            self.lexicon["shot"] = len(self.lexicon) + 1
+            self.lexicon["shots"] = len(self.lexicon) + 1
 
         for tweet in self.tweets:
-            for drug in self.lexicon.values():
-                if subwords_bool:
+            if subwords_bool:
+                for drug in self.lexicon.keys():
                     for match in re.finditer(drug, tweet.text):
+                        tweet.pop(match.start(), match.end(),
+                                  tweet.text[int(match.start()): int(match.end())], drug)
+            else:
+                # if (' ' + drug + ' ') in (' ' + tweet.text + ' '):
+                #     for match in re.finditer(drug, tweet.text):
+                #         tweet.pop(match.start(), match.end(),
+                #                   tweet.text[int(match.start()): int(match.end())], drug)
+                for word in tweet.text.split():
+                    if word in self.lexicon.keys():
+                        for match in re.finditer(word, tweet.text):
                             tweet.pop(match.start(), match.end(),
-                                      tweet.text[int(match.start()): int(match.end())], drug)
-                else:
-                    if (' ' + drug + ' ') in (' ' + tweet.text + ' '):
-                        for match in re.finditer(drug, tweet.text):
-                            tweet.pop(match.start(), match.end(),
-                                      tweet.text[int(match.start()): int(match.end())], drug)
+                                      tweet.text[int(match.start()): int(match.end())], word)
 
     def get_tweets(self):
         final = []
