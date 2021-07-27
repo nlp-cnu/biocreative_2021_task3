@@ -1,10 +1,1 @@
 NAME	LEXICON	STOP WORDS	SUBWORDS	RESULTS
-Train3tsv	Training	False	False	# of positive results: 110/89004
-Train3tsv	Training	False	True	# of positive results: 191/89004
-Train3tsv	Training	True	False	# of positive results: 225/89004
-Train3tsv	Training	True	True	# of positive results: 438/89004
-Val3.tsv	Training	False	False	# of positive results: 48/38149
-Val3.tsv	Training	False	True	# of positive results: 82/38149
-Val3.tsv	Training	True	False	# of positive results: 94/38149
-Val3.tsv	Training	True	True	# of positive results: 185/38149
-Train3tsv	RXNORM	False	False	# of positive results: 887/89004

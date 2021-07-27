@@ -38,9 +38,10 @@ class Dataset(object):
         for tweet in self.tweets:
             if subwords_bool:
                 for drug in self.lexicon.keys():
-                    for match in re.finditer(drug, tweet.text):
-                        tweet.pop(match.start(), match.end(),
-                                  tweet.text[int(match.start()): int(match.end())], drug)
+                    start = tweet.text.find(drug)
+                    if start != -1:
+                        end = start + len(drug)
+                        tweet.pop(start, end, tweet.text[start: end], drug)
             else:
                 # if (' ' + drug + ' ') in (' ' + tweet.text + ' '):
                 #     for match in re.finditer(drug, tweet.text):
@@ -48,10 +49,9 @@ class Dataset(object):
                 #                   tweet.text[int(match.start()): int(match.end())], drug)
                 for word in tweet.text.split():
                     if word in self.lexicon.keys():
-                        for match in re.finditer(word, tweet.text):
-                            tweet.pop(match.start(), match.end(),
-                                      tweet.text[int(match.start()): int(match.end())], word)
-
+                        start = tweet.text.find(word)
+                        end = start + len(word)
+                        tweet.pop(start, end, tweet.text[start: end], word)
     def get_tweets(self):
         final = []
         for tweet in self.tweets:
