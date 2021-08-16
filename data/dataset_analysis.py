@@ -35,8 +35,9 @@ def dataset_analysis(fpath):
     seq_lengths = [len(tweet_tokenizer.tokenize(x.text)) for x in tweets]
     fig, ax = plt.subplots(figsize=[12, 8])
     ax.hist(seq_lengths, bins=max(seq_lengths))
-    ax.set_xlabel("Sequence Lengths")
-    ax.set_ylabel("Count")
+    ax.set_xlabel("Sequence Lengths", fontsize='x-large')
+    ax.set_ylabel("Count", fontsize='x-large')
+    plt.tight_layout()
     plt.show()
 
     print("Percentage of tweets with an emoji = {}".format(num_emoji / num_tweets))
