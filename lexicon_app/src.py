@@ -31,8 +31,8 @@ with open(log, "a") as file:
     file.write(implementation("val", "Training", False, False, "Val3.tsv"))
     file.write(implementation("val", "Training", True, False, "Val3.tsv"))
 
-    file.write(implementation("t0", "RXNORM", False, False, "Train3tsv"))
-    file.write(implementation("t0", "RXNORM", True, False, "Train3tsv"))
+    file.write(implementation("t0", "RXNORM", False, False, "Train3.tsv"))
+    file.write(implementation("t0", "RXNORM", True, False, "Train3.tsv"))
     
     file.write(implementation("val", "RXNORM", False, False, "Val3.tsv"))
     file.write(implementation("val", "RXNORM", True, False, "Val3.tsv"))
@@ -45,20 +45,20 @@ with open(log, "a") as file:
 
 
     #### Test with subword matching
-    file.write(implementation("t0", "Training", False, True, "Train3tsv"))
-    file.write(implementation("t0", "Training", True, True, "Train3tsv"))
+    file.write(implementation("t0", "Training", False, True, "Train3.tsv"))
+    file.write(implementation("t0", "Training", True, True, "Train3.tsv"))
 
     file.write(implementation("val", "Training", False, True, "Val3.tsv"))
     file.write(implementation("val", "Training", True, True, "Val3.tsv"))
     
-    file.write(implementation("t0", "RXNORM", False, True, "Train3tsv"))
-    file.write(implementation("t0", "RXNORM", True, True, "Train3tsv"))
+    file.write(implementation("t0", "RXNORM", False, True, "Train3.tsv"))
+    file.write(implementation("t0", "RXNORM", True, True, "Train3.tsv"))
 
     file.write(implementation("val", "RXNORM", False, True, "Val3.tsv"))
     file.write(implementation("val", "RXNORM", True, True, "Val3.tsv"))
 
-    file.write(implementation("t0", "Both", False, True, "Train3tsv"))
-    file.write(implementation("t0", "Both", True, True, "Train3tsv"))
+    file.write(implementation("t0", "Both", False, True, "Train3.tsv"))
+    file.write(implementation("t0", "Both", True, True, "Train3.tsv"))
 
     file.write(implementation("val", "Both", False, True, "Val3.tsv"))
     file.write(implementation("val", "Both", True, True, "Val3.tsv"))
