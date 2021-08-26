@@ -31,11 +31,21 @@ class Dataset(object):
         :return: none
         """
         if stop_words_bool:
-            self.lexicon["pill"] = len(self.lexicon) + 1
-            self.lexicon["shot"] = len(self.lexicon) + 1
-            self.lexicon["shots"] = len(self.lexicon) + 1
+            #self.lexicon["pill"] = len(self.lexicon) + 1
+            #self.lexicon["shot"] = len(self.lexicon) + 1
+            #self.lexicon["shots"] = len(self.lexicon) + 1
+            if "pill" in self.lexicon:
+                del(self.lexicon["pill"])
+            if "shot" in self.lexicon:
+                del(self.lexicon["shot"])
+            if "shots" in self.lexicon:
+                del(self.lexicon["shots"])
 
+        tweet_num = 1
+        num_tweets = len(self.tweets)
         for tweet in self.tweets:
+            print ('running: ' + str(stop_words_bool) + ', ' + str(subwords_bool) + ', checking tweet # ' + str(tweet_num) + '/' + str(num_tweets))
+            tweet_num+=1
             if subwords_bool:
                 for drug in self.lexicon.keys():
                     start = tweet.text.find(drug)

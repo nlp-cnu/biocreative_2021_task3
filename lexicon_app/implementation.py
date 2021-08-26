@@ -42,15 +42,27 @@ def implementation(data, lex, stop_words_bool, subwords_bool, pred_name):
         lex_fpath: file path of lexicon file
         lex_delim: delimiter for reading lexicon file
     """
+
+    #make directories
+    if not os.path.isdir(os.path.join("lexicon_app", "test")):
+         os.mkdir(os.path.join("lexicon_app", "test"))
+
+    
     if lex == "Training":
         dict_file = os.path.join("lexicon_app", "Training_only.csv")
         pred_dir = os.path.join("lexicon_app", "test", "training_as_dict")
+        if not os.path.isdir(pred_dir):
+            os.mkdir(pred_dir)
     elif lex == "RXNORM":
         dict_file = os.path.join("lexicon_app", "RXNORM_only.csv")
         pred_dir = os.path.join("lexicon_app", "test", "rxnorm_as_dict")
+        if not os.path.isdir(pred_dir):
+            os.mkdir(pred_dir)
     elif lex == "Both":
         dict_file = os.path.join("lexicon_app", "Training_and_RXNORM.csv")
         pred_dir = os.path.join("lexicon_app", "test", "both_as_dict")
+        if not os.path.isdir(pred_dir):
+            os.mkdir(pred_dir)
     else:
         print("Incorrect dict file: Use Training, RXNORM or Both")
         return
@@ -77,6 +89,8 @@ def implementation(data, lex, stop_words_bool, subwords_bool, pred_name):
         - Dataset.write_results(fpath): with fpath as the desired file path, writes csv format
             of all tweets with positive results updated
     """
+    if not os.path.isdir(pred_dir):
+        os.mkdir(pred_dir)
     run.write_results(os.path.join(pred_dir, pred_name))
 
     return pred_name + "\t%s\t%r\t%r\t" %\
