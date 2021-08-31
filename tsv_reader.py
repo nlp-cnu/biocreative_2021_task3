@@ -37,6 +37,10 @@ def tsv_reader(fname):
 
 
 def read_rxnorm():
+    """
+    Reads drug listings from provided RXNORM file and returns them in a list
+    :return:
+    """
     with open("data\RXNORM.RRF", "rt") as rxfile:
         reader = csv.reader(rxfile, delimiter='|', lineterminator='\n')
         drugs_list = []
@@ -47,6 +51,12 @@ def read_rxnorm():
 
 
 def write_drugs(fname, drugs_list):
+    """
+    takes a list of drugs and writes them to a file for reference
+    :param fname:
+    :param drugs_list:
+    :return:
+    """
     fpath = os.path.join("lexicon_app", fname)
     with open(fpath, 'wt') as file:
         writer = csv.writer(file, delimiter="\n", quoting=csv.QUOTE_ALL)
@@ -64,17 +74,17 @@ if __name__ == "__main__":
     drugs_rxnorm = read_rxnorm()
     drugs = []
 
-    for i in drugs_train0:
-        drugs.append(i)
-
-    for j in drugs_train1:
-        if j not in drugs:
-            drugs.append(j)
-
-    # for x in drugs_rxnorm:
-    #     # if x not in drugs:
-    #     drugs.append(x)
-
-
-    write_drugs("Training_only.csv", drugs)
+    # for i in drugs_train0:
+    #     drugs.append(i)
+    #
+    # for j in drugs_train1:
+    #     if j not in drugs:
+    #         drugs.append(j)
+    #
+    # # for x in drugs_rxnorm:
+    # #     # if x not in drugs:
+    # #     drugs.append(x)
+    #
+    #
+    # write_drugs("Training_only.csv", drugs)
 

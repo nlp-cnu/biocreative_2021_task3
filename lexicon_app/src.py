@@ -1,6 +1,9 @@
 import os
 from implementation import implementation
-
+'''
+src.py IS THE EXECUTION FILE FOR THE LEXICON APPROACH, RUN THIS FILE AFTER SETTING
+APPROPRIATE RUN INSTANCES
+'''
 """
 implementation(data, lex, stop_words_bool, subwords_bool, pred_name):
 
@@ -23,6 +26,7 @@ with open(log, "w") as file:
     file.close()
 
 with open(log, "a") as file:
+    # FOR REFERENCE: implementation(data, lex, stop_words_bool, subwords_bool, pred_name)
 
     #### Test without subword matching
     file.write(implementation("t0", "Training", False, False, "Train3.tsv"))
@@ -45,22 +49,22 @@ with open(log, "a") as file:
 
 
     #### Test with subword matching
-    file.write(implementation("t0", "Training", False, True, "Train3.tsv"))
-    file.write(implementation("t0", "Training", True, True, "Train3.tsv"))
-
-    file.write(implementation("val", "Training", False, True, "Val3.tsv"))
-    file.write(implementation("val", "Training", True, True, "Val3.tsv"))
-    
-    file.write(implementation("t0", "RXNORM", False, True, "Train3.tsv"))
-    file.write(implementation("t0", "RXNORM", True, True, "Train3.tsv"))
-
-    file.write(implementation("val", "RXNORM", False, True, "Val3.tsv"))
-    file.write(implementation("val", "RXNORM", True, True, "Val3.tsv"))
-
-    file.write(implementation("t0", "Both", False, True, "Train3.tsv"))
-    file.write(implementation("t0", "Both", True, True, "Train3.tsv"))
-
-    file.write(implementation("val", "Both", False, True, "Val3.tsv"))
-    file.write(implementation("val", "Both", True, True, "Val3.tsv"))
+    # file.write(implementation("t0", "Training", False, True, "Train3.tsv"))
+    # file.write(implementation("t0", "Training", True, True, "Train3.tsv"))
+    #
+    # file.write(implementation("val", "Training", False, True, "Val3.tsv"))
+    # file.write(implementation("val", "Training", True, True, "Val3.tsv"))
+    #
+    # file.write(implementation("t0", "RXNORM", False, True, "Train3.tsv"))
+    # file.write(implementation("t0", "RXNORM", True, True, "Train3.tsv"))
+    #
+    # file.write(implementation("val", "RXNORM", False, True, "Val3.tsv"))
+    # file.write(implementation("val", "RXNORM", True, True, "Val3.tsv"))
+    #
+    # file.write(implementation("t0", "Both", False, True, "Train3.tsv"))
+    # file.write(implementation("t0", "Both", True, True, "Train3.tsv"))
+    #
+    # file.write(implementation("val", "Both", False, True, "Val3.tsv"))
+    # file.write(implementation("val", "Both", True, True, "Val3.tsv"))
 
     
