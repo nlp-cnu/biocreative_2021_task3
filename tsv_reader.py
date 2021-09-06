@@ -33,7 +33,7 @@ def tsv_reader(fname):
                                             #start, end, length, span, drug
 
         file.close()
-        return drugs
+        return pos_tweets
 
 
 def read_rxnorm():
