@@ -33,6 +33,8 @@ def load_dataset(gfile):
     """
     tw_int_map = {}
     df = pd.read_csv(gfile, sep='\t')
+    print("data_frame_shape = ", df.shape)
+
     #def createTweets(tw:series, tw_int_map:dict):
     def createTweets(tw, tw_int_map):
         #create the tweet or retrieve the tweet if the tweet contains multiple drugs
@@ -47,6 +49,8 @@ def load_dataset(gfile):
             tweet.anns.append(ann)
     df.apply(lambda tw: createTweets(tw, tw_int_map), axis=1)
     num_anns = sum([len(x.anns) for _, x in tw_int_map.items()])
+
+    print ("numm_anns = ", num_anns)
     #log.info("Loaded dataset %s tweets. %s annotations.", len(tw_int_map), num_anns)
     return tw_int_map        
 
