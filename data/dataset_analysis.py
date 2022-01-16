@@ -7,7 +7,7 @@ from nltk import TweetTokenizer
 import numpy as np
 
 
-from lexicon_app.Tweet import Tweet
+from includes.Tweet import Tweet
 
 
 def read_data(fpath):

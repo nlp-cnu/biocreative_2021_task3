@@ -2,3 +2,5 @@
  python evaluation.py [input_dir] [output_dir]
 2021-08-30 11:18:19,478 root         ERROR    Invalid input parameters. Format:                  
  python evaluation.py [input_dir] [output_dir]
+2022-01-16 11:03:45,577 root         ERROR    Invalid input parameters. Format:                  
+ python evaluation.py [input_dir] [output_dir]

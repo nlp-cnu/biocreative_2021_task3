@@ -1,10 +1,10 @@
 import os, csv
-from Tweet import Tweet
-from Dataset import Dataset
+from includes.Tweet import Tweet
+from includes.Dataset import Dataset
 
 """
 @param data: "t0", "t1", or "val" - indicate which data file is being tested
-@param lex: "Training", "RXNORM" or "Both" - indicate which lexicon to test with
+@param lex: "Training", "RXNORM" or "Both" - indicate which lexicons to test with
 @param stop_words_bool: include stop words (shot and pill) in search or not
 @param subword_bool: include subwords ("pill" in "pillow") in search or not
 @param pred_name: name of predictions file being written to
@@ -15,7 +15,7 @@ returns: string : "# of positive results: _ out of _"
 def implementation(data, lex, stop_words_bool, subwords_bool, pred_name):
 
     """
-    Implementation script of lexicon approach to BioCreative Task 3
+    Implementation script of lexicons approach to BioCreative Task 3
     Steps to Implement:
     1) Create list of Tweet objects from file reading, following parameters Tweet(twid, userid, created, text)
     """
@@ -39,8 +39,8 @@ def implementation(data, lex, stop_words_bool, subwords_bool, pred_name):
     """
     2) Create Dataset(tweets, lex_fpath, lex_delim) where
         tweets: list of Tweet objects
-        lex_fpath: file path of lexicon file
-        lex_delim: delimiter for reading lexicon file
+        lex_fpath: file path of lexicons file
+        lex_delim: delimiter for reading lexicons file
     """
 
     #make directories
@@ -69,7 +69,7 @@ def implementation(data, lex, stop_words_bool, subwords_bool, pred_name):
 
     run = Dataset(twt_list, dict_file, '\n')
     """
-    3) Call Dataset.check() to perform check on all tweets using lexicon, updating each
+    3) Call Dataset.check() to perform check on all tweets using lexicons, updating each
         positive result with necessary info, and setting tweet.contains_drug = True
         (*most time-consuming step*)
     """
