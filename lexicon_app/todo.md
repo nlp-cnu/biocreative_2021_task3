@@ -1,5 +1,4 @@
-## GOAL: To evaluate the lexicon approach with all generated lexicons, all combinations parameters, using
-both the Training task and Validation task datasets.
+## GOAL: To evaluate the lexicon approach with all generated lexicons, all combinations parameters, using both the Training task and Validation task datasets.
 
 ## Evaluation: Evaluation will score by 3 metrics
  - F1:
