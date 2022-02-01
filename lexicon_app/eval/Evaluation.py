@@ -31,15 +31,18 @@ def load_dataset(gfile):
     :param gfile: the path to the annotation file, a tsv containing tweet_id, user_id, created_at, text, start, end, span, drug
     :return: a dictionary tweet_id => tweet object (with their list of expected annotations)
     """
+    duplicate_count = 0
     tw_int_map = {}
     df = pd.read_csv(gfile, sep='\t')
+    print(df)
     print("data_frame_shape = ", df.shape)
 
     #def createTweets(tw:series, tw_int_map:dict):
-    def createTweets(tw, tw_int_map):
+    def createTweets(tw, tw_int_map, duplicate_count):
         #create the tweet or retrieve the tweet if the tweet contains multiple drugs
         if tw['tweet_id'] in tw_int_map:
             tweet = tw_int_map[tw['tweet_id']]
+            duplicate_count +=1
         else:
             tweet = Tweet(tw['tweet_id'], tw['text'])
             tw_int_map[tw['tweet_id']] = tweet
@@ -47,12 +50,13 @@ def load_dataset(gfile):
         if tw['span']!='-':
             ann = Ann(tw['span'].strip(), tw['start'], tw['end'])
             tweet.anns.append(ann)
-    df.apply(lambda tw: createTweets(tw, tw_int_map), axis=1)
+    df.apply(lambda tw: createTweets(tw, tw_int_map, duplicate_count), axis=1)
     num_anns = sum([len(x.anns) for _, x in tw_int_map.items()])
 
     print ("numm_anns = ", num_anns)
     #log.info("Loaded dataset %s tweets. %s annotations.", len(tw_int_map), num_anns)
-    return tw_int_map        
+    print("num of duplicate tweets", duplicate_count)
+    return tw_int_map, df
 
 
 def is_overlap_match(a, b):
@@ -123,11 +127,20 @@ def score_task(pred_file, gold_file, out_file):
         out_file {string} -- path to the file to write results to
     """
     # load gold dataset
-    gold_ds = load_dataset(gold_file)
+    gold_ds, golddf = load_dataset(gold_file)
     # load prediction dataset
-    pred_ds = load_dataset(pred_file)
+    pred_ds, preddf = load_dataset(pred_file)
+
+
+    if lambda tw: gold_ds[tw['user_id']] != pred_ds[tw['user_id']]:
+
+        # print(lambda tw: gold_ds[tw['user_id']] + "is not the same as" +  pred_ds[tw['user_id']])
+        print("POP")
+
+
         
     #Sanity check that the tweets are the same and the the texts of the tweets are also the same
+    print(len(gold_ds), len(pred_ds))
     assert len(gold_ds)==len(pred_ds), "The number of tweets loaded in the gold standard {} is not the same than the number of tweets loaded in the predictions {}".format(len(gold_ds), len(pred_ds))
     for gtwID, gtw in gold_ds.items():
         assert gtwID in pred_ds.keys(), "The tweet {} of the gold standard was not found in the tweets of the predictions...".format(gtwID)
@@ -172,7 +185,7 @@ def evaluate():
     [_, input_dir, output_dir] = sys.argv
 
     # get files in prediction zip file
-    pred_dir = os.path.join(input_dir, 'test')
+    pred_dir = os.path.join(input_dir, 'predictions')
     pred_files = [x for x in os.listdir(pred_dir) if not os.path.isdir(os.path.join(pred_dir, x))]
     pred_files = [x for x in pred_files if x[0] not in ["_", "."]]
     if not pred_files:

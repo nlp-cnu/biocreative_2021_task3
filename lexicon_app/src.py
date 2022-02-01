@@ -1,5 +1,5 @@
 import os
-from implementation import implementation
+from includes.implementation import implementation
 '''
 src.py IS THE EXECUTION FILE FOR THE LEXICON APPROACH, RUN THIS FILE AFTER SETTING
 APPROPRIATE RUN INSTANCES
@@ -8,12 +8,12 @@ APPROPRIATE RUN INSTANCES
 implementation(data, lex, stop_words_bool, subwords_bool, pred_name):
 
 @param data: "t0", "t1", or "val" - indicate which data file is being tested
-@param lex: "Training", "RXNORM" or "Both" - indicate which lexicons to test with
+@param lex: "Training", "RXNORM" or "Both" - indicate which lexicons to predictions with
 
 """
-# training_as_dict = os.path.join("lexicon_app", "test", "training_as_dict")
-# rxnorm_as_dict = os.path.join("lexicon_app", "test", "rxnorm_as_dict")
-# both_as_dict = os.path.join("lexicon_app", "test", "both_as_dict")
+# training_as_dict = os.path.join("lexicon_app", "predictions", "training_as_dict")
+# rxnorm_as_dict = os.path.join("lexicon_app", "predictions", "rxnorm_as_dict")
+# both_as_dict = os.path.join("lexicon_app", "predictions", "both_as_dict")
 # subdirs = ["Stopwords_and_Subwords", "Stopwords_only", "Subwords_only", "No_Stopwords_or_Subwords"]
 # for i in subdirs:
 #     os.mkdir(os.path.join(training_as_dict, i))

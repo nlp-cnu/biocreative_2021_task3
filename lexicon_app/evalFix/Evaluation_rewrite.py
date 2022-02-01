@@ -18,13 +18,13 @@ with open("evalFix/score_log.txt", "rt") as file:
 #training as gold standard
 print(os.path.join(os.path.curdir, ".."))
 training_goldstd = os.path.join(os.curdir, "gold_std", "BioCreative_TrainTask3.tsv")
-pred = os.path.join(os.curdir, "test", "training_as_dict", "No_Stopwords_or_Subwords", "Train3.tsv")
+pred = os.path.join(os.curdir, "predictions", "training_as_dict", "No_Stopwords_or_Subwords", "Train3.tsv")
 score_task(pred, training_goldstd, "evalFix/score_log.txt")
 
 
-# score_task(os.path.join("test", "both_as_dict", "Subwords_only", "Val3.tsv"), training_goldstd, "score_log.txt")
-# score_task(os.path.join("test", "both_as_dict", "Stopwords_only", "Val3.tsv"), training_goldstd, "score_log.txt")
-# score_task(os.path.join("test", "both_as_dict", "Stopwords_and_Subwords", "Val3.tsv"), training_goldstd, "score_log.txt")
+# score_task(os.path.join("predictions", "both_as_dict", "Subwords_only", "Val3.tsv"), training_goldstd, "score_log.txt")
+# score_task(os.path.join("predictions", "both_as_dict", "Stopwords_only", "Val3.tsv"), training_goldstd, "score_log.txt")
+# score_task(os.path.join("predictions", "both_as_dict", "Stopwords_and_Subwords", "Val3.tsv"), training_goldstd, "score_log.txt")
 # with open(training_goldstd, "rt", encoding="utf") as goldstdfile:
 #     reader1 = csv.reader(goldstdfile, delimiter="\t", lineterminator="\n")
 #     with open(pred, "rt", encoding="utf") as predfile:

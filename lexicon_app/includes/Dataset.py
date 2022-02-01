@@ -78,7 +78,6 @@ class Dataset(object):
     def write_results(self, fpath):
         with open(fpath, 'w', newline='', encoding="utf") as file:
             writer = csv.writer(file, delimiter="\t", quoting=csv.QUOTE_NONE)
-            # writer.writerow(['# of positive results: %s out of %s' % (len(self.positive_only()) ,len(self.tweets))])
             file.write('tweet_id\tuser_id\tcreated_at\ttext\tstart\tend\tspan\tdrug\n')
             writer.writerows(self.get_tweets())
             file.close()
