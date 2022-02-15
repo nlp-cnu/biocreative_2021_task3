@@ -1,0 +1,6 @@
+Task3overlapF:0.480
+Task3overlapP:0.764
+Task3overlapR:0.350
+Task3strictF:0.417
+Task3strictP:0.664
+Task3strictR:0.304

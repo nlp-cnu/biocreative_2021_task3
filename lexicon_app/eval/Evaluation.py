@@ -33,7 +33,7 @@ def load_dataset(gfile):
     """
     duplicate_count = 0
     tw_int_map = {}
-    df = pd.read_csv(gfile, sep='\t')
+    df = pd.read_csv(gfile, sep='\t', encoding='utf-8')
     print(df)
     print("data_frame_shape = ", df.shape)
 

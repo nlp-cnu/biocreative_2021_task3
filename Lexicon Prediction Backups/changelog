@@ -1,1 +1,3 @@
 - deleted instances of tweet id 7.64679969431818E+017 from TrainTask3 gold std and all related prediction files
+- replaced tweet_id column in traintask3 gold std with tweet_id column from train3 prediction, to remove the scientific notation caused by spreadsheet abbreviations
+FOR FUTURE EDITS - ensure that every column in the sheets are inputted as "text" and not "General", and ensure UTF-8 encoding
