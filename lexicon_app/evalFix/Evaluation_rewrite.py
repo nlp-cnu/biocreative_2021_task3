@@ -12,37 +12,35 @@ def score_task(pred_file, gold_file, out_file):
     
 """
 
-with open("evalFix/score_log.txt", "rt") as file:
+with open("evalFix/score_log.txt", "wt") as file:
     file.close()
 
-#training as gold standard
-print(os.path.join(os.path.curdir, ".."))
-training_goldstd = os.path.join(os.curdir, "gold_std", "BioCreative_TrainTask3.tsv")
-pred = os.path.join(os.curdir, "predictions", "training_as_dict", "No_Stopwords_or_Subwords", "Train3.tsv")
-score_task(pred, training_goldstd, "evalFix/score_log.txt")
+SCORE_LOG = "evalFix/score_log.txt"
+training_goldstd = "gold_std/BioCreative_TrainTask3.tsv"
+val_goldstd = "gold_std/BioCreative_ValTask3.tsv"
+
+files = ["Train3.tsv", "Val3.tsv"]
+predictions = ["training_as_dict", "rxnorm_as_dict", "both_as_dict"]
+params = ["No_Stopwords_or_Subwords", "Stopwords_and_Subwords", "Stopwords_only", "Subwords_only"]
 
 
-# score_task(os.path.join("predictions", "both_as_dict", "Subwords_only", "Val3.tsv"), training_goldstd, "score_log.txt")
-# score_task(os.path.join("predictions", "both_as_dict", "Stopwords_only", "Val3.tsv"), training_goldstd, "score_log.txt")
-# score_task(os.path.join("predictions", "both_as_dict", "Stopwords_and_Subwords", "Val3.tsv"), training_goldstd, "score_log.txt")
-# with open(training_goldstd, "rt", encoding="utf") as goldstdfile:
-#     reader1 = csv.reader(goldstdfile, delimiter="\t", lineterminator="\n")
-#     with open(pred, "rt", encoding="utf") as predfile:
-#         reader2 = csv.reader(predfile, delimiter="\t", lineterminator="\n")
-#         num = 0
-#         list1 = []
-#         list2 = []
-#         for line in reader1:
-#             list1.append(line[3])
-#         for line in reader2:
-#             list2.append(line[3])
-#         for i in range(len(list1)):
-#                 item1 = list1[i]
-#                 item2 = list2[i]
-#
-#                 if item1 == item2:
-#                     print(item1, item2)
-#                     print("mismatch at:", num)
-#                 num+=1
+
+
+#EVALUATING TRAINING FILES
+open(SCORE_LOG, "at").write("-------------------\nTRAINING FILES EVALUATIONS\n")
+for prediction in predictions:
+    open(SCORE_LOG, "at").write("\n" + prediction + "\n")
+    for param in params:
+        open(SCORE_LOG, "at").write(param+ "\n")
+        score_task(os.path.join("predictions", prediction, param, files[0]), training_goldstd, SCORE_LOG)
+
+#EVALUATING VAL FILES
+open(SCORE_LOG, "at").write("\n\n-------------------\nVAL FILES EVALUATIONS\n")
+for prediction in predictions:
+    open(SCORE_LOG, "at").write("\n" + prediction+ "\n")
+    for param in params:
+        open(SCORE_LOG, "at").write(param+ "\n")
+        score_task(os.path.join("predictions", prediction, param, files[1]), val_goldstd, SCORE_LOG)
+
 
 

@@ -152,7 +152,7 @@ def score_task(pred_file, gold_file, out_file):
             ptw.text=ptw.text[:-1]
         assert gtw.text==ptw.text, "The text of the tweet {}:[{}] in the gold standard is different from the text of the same tweet {}:[{}] in the predictions...".format(gtwID, gtw.text, ptw.twid, ptw.text)
     
-    out = open(out_file, 'w')
+    out = open(out_file, 'a')
     o_prec, o_rec, o_f1 = perf(gold_ds, pred_ds, strict=False)
     out.write("Task3overlapF:%.3f\n" % o_f1)
     out.write("Task3overlapP:%.3f\n" % o_prec)
