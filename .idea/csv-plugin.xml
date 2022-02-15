@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/lexicon_app/lexicons/Training_and_RXNORM.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/lexicon_app/lexicons/Training_only.csv">
           <value>
             <Attribute>

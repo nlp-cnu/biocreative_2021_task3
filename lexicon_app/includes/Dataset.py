@@ -9,20 +9,17 @@ class Dataset(object):
     def __init__(self, tweets=None, lex_fpath=None, lex_delim=""):
         if tweets is None:
             tweets = []
-        if lex_fpath is None:
-            self.lexicon = {}
-
         self.tweets = tweets
 
-        with open(lex_fpath, 'rt') as lex_file:
-            reader = csv.reader(lex_file, lineterminator=lex_delim)
-            lexicon = {}
-            key = 0
-            for item in reader:
-                for i in item:
-                    if i != "pill" and i != "shot" and i != "shots":
+        lexicon = {}
+        if lex_fpath:
+            with open(lex_fpath, 'rt') as lex_file:
+                reader = csv.reader(lex_file, lineterminator=lex_delim)
+                key = 0
+                for item in reader:
+                    for i in item:
                         lexicon[i] = key
-                key += 1
+                    key += 1
         self.lexicon = lexicon
 
     def check(self, subwords_bool, stop_words_bool):
@@ -30,7 +27,7 @@ class Dataset(object):
         runs lexicons search on tweets in list, call pop(start, end, span, drug) for positive drugs
         :return: none
         """
-        if stop_words_bool:
+        if not stop_words_bool:
             #self.lexicons["pill"] = len(self.lexicons) + 1
             #self.lexicons["shot"] = len(self.lexicons) + 1
             #self.lexicons["shots"] = len(self.lexicons) + 1
