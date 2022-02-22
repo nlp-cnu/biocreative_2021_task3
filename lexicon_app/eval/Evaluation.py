@@ -131,13 +131,6 @@ def score_task(pred_file, gold_file, out_file):
     # load prediction dataset
     pred_ds, preddf = load_dataset(pred_file)
 
-
-    if lambda tw: gold_ds[tw['user_id']] != pred_ds[tw['user_id']]:
-
-        # print(lambda tw: gold_ds[tw['user_id']] + "is not the same as" +  pred_ds[tw['user_id']])
-        print("POP")
-
-
         
     #Sanity check that the tweets are the same and the the texts of the tweets are also the same
     print(len(gold_ds), len(pred_ds))
