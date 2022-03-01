@@ -24,6 +24,9 @@ implementation step 1 has been altered to just accept a file path as the first p
 """
 
 with open("log.txt", "w") as log:
+    log.write(implementation("Train3.tsv", "Training", False, False, "ConfigPred.tsv"))
+    log.write(implementation("Train3.tsv", "Training", False, True, "ConfigPred.tsv"))
+    log.write(implementation("Train3.tsv", "Training", True, False, "ConfigPred.tsv"))
     log.write(implementation("Train3.tsv", "Training", True, True, "ConfigPred.tsv"))
     log.close()
 
@@ -37,5 +40,10 @@ def score_task(pred_file, gold_file, out_file):
 
 """
 score_task("../predictions/training_as_dict/No_Stopwords_or_Subwords/ConfigPred.tsv", "BioCreative_TrainTask3.tsv", "log.txt")
+score_task("../predictions/training_as_dict/Stopwords_only/ConfigPred.tsv", "BioCreative_TrainTask3.tsv", "log.txt")
+score_task("../predictions/training_as_dict/Subwords_only/ConfigPred.tsv", "BioCreative_TrainTask3.tsv", "log.txt")
+score_task("../predictions/training_as_dict/Stopwords_and_Subwords/ConfigPred.tsv", "BioCreative_TrainTask3.tsv", "log.txt")
+
+
 
 

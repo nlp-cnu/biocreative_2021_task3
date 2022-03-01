@@ -1,0 +1,174 @@
+	Task3overlapF	0.480
+0	Task3overlapP	0.764
+1	Task3overlapR	0.35
+2	Task3strictF	0.417
+3	Task3strictP	0.664
+4	Task3strictR	0.304
+5	Stopwords_and_Subwords	
+6	Task3overlapF	0.442
+7	Task3overlapP	0.345
+8	Task3overlapR	0.616
+9	Task3strictF	0.392
+10	Task3strictP	0.306
+11	Task3strictR	0.547
+12	Stopwords_only	
+13	Task3overlapF	0.399
+14	Task3overlapP	0.413
+15	Task3overlapR	0.386
+16	Task3strictF	0.326
+17	Task3strictP	0.338
+18	Task3strictR	0.315
+19	Subwords_only	
+20	Task3overlapF	0.679
+21	Task3overlapP	0.775
+22	Task3overlapR	0.604
+23	Task3strictF	0.61
+24	Task3strictP	0.696
+25	Task3strictR	0.543
+26	rxnorm_as_dict	
+27	No_Stopwords_or_Subwords	
+28	Task3overlapF	0.087
+29	Task3overlapP	0.055
+30	Task3overlapR	0.202
+31	Task3strictF	0.073
+32	Task3strictP	0.046
+33	Task3strictR	0.169
+34	Stopwords_and_Subwords	
+35	Task3overlapF	0.015
+36	Task3overlapP	0.008
+37	Task3overlapR	0.305
+38	Task3strictF	0.012
+39	Task3strictP	0.006
+40	Task3strictR	0.252
+41	Stopwords_only	
+42	Task3overlapF	0.087
+43	Task3overlapP	0.055
+44	Task3overlapR	0.202
+45	Task3strictF	0.073
+46	Task3strictP	0.046
+47	Task3strictR	0.169
+48	Subwords_only	
+49	Task3overlapF	0.015
+50	Task3overlapP	0.008
+51	Task3overlapR	0.305
+52	Task3strictF	0.012
+53	Task3strictP	0.006
+54	Task3strictR	0.252
+55	both_as_dict	
+56	No_Stopwords_or_Subwords	
+57	Task3overlapF	0.199
+58	Task3overlapP	0.124
+59	Task3overlapR	0.496
+60	Task3strictF	0.174
+61	Task3strictP	0.109
+62	Task3strictR	0.435
+63	Stopwords_and_Subwords	
+64	Task3overlapF	0.039
+65	Task3overlapP	0.02
+66	Task3overlapR	0.799
+67	Task3strictF	0.035
+68	Task3strictP	0.018
+69	Task3strictR	0.711
+70	Stopwords_only	
+71	Task3overlapF	0.192
+72	Task3overlapP	0.118
+73	Task3overlapR	0.522
+74	Task3strictF	0.164
+75	Task3strictP	0.1
+76	Task3strictR	0.445
+77	Subwords_only	
+78	Task3overlapF	0.039
+79	Task3overlapP	0.02
+80	Task3overlapR	0.787
+81	Task3strictF	0.035
+82	Task3strictP	0.018
+83	Task3strictR	0.707
+84	-------------------	
+85	VAL FILES EVALUATIONS	
+86	training_as_dict	
+87	No_Stopwords_or_Subwords	
+88	Task3overlapF	0.428
+89	Task3overlapP	0.708
+90	Task3overlapR	0.306
+91	Task3strictF	0.365
+92	Task3strictP	0.604
+93	Task3strictR	0.261
+94	Stopwords_and_Subwords	
+95	Task3overlapF	0.375
+96	Task3overlapP	0.303
+97	Task3overlapR	0.491
+98	Task3strictF	0.316
+99	Task3strictP	0.254
+100	Task3strictR	0.42
+101	Stopwords_only	
+102	Task3overlapF	0.332
+103	Task3overlapP	0.362
+104	Task3overlapR	0.306
+105	Task3strictF	0.283
+106	Task3strictP	0.309
+107	Task3strictR	0.261
+108	Subwords_only	
+109	Task3overlapF	0.571
+110	Task3overlapP	0.683
+111	Task3overlapR	0.491
+112	Task3strictF	0.485
+113	Task3strictP	0.573
+114	Task3strictR	0.42
+115	rxnorm_as_dict	
+116	No_Stopwords_or_Subwords	
+117	Task3overlapF	0.082
+118	Task3overlapP	0.053
+119	Task3overlapR	0.182
+120	Task3strictF	0.078
+121	Task3strictP	0.05
+122	Task3strictR	0.173
+123	Stopwords_and_Subwords	
+124	Task3overlapF	0.017
+125	Task3overlapP	0.009
+126	Task3overlapR	0.319
+127	Task3strictF	0.013
+128	Task3strictP	0.007
+129	Task3strictR	0.252
+130	Stopwords_only	
+131	Task3overlapF	0.082
+132	Task3overlapP	0.053
+133	Task3overlapR	0.182
+134	Task3strictF	0.078
+135	Task3strictP	0.05
+136	Task3strictR	0.173
+137	Subwords_only	
+138	Task3overlapF	0.017
+139	Task3overlapP	0.009
+140	Task3overlapR	0.319
+141	Task3strictF	0.013
+142	Task3strictP	0.007
+143	Task3strictR	0.252
+144	both_as_dict	
+145	No_Stopwords_or_Subwords	
+146	Task3overlapF	0.177
+147	Task3overlapP	0.112
+148	Task3overlapR	0.416
+149	Task3strictF	0.154
+150	Task3strictP	0.098
+151	Task3strictR	0.363
+152	Stopwords_and_Subwords	
+153	Task3overlapF	0.035
+154	Task3overlapP	0.018
+155	Task3overlapR	0.664
+156	Task3strictF	0.028
+157	Task3strictP	0.015
+158	Task3strictR	0.558
+159	Stopwords_only	
+160	Task3overlapF	0.163
+161	Task3overlapP	0.101
+162	Task3overlapR	0.416
+163	Task3strictF	0.142
+164	Task3strictP	0.088
+165	Task3strictR	0.363
+166	Subwords_only	
+167	Task3overlapF	0.035
+168	Task3overlapP	0.018
+169	Task3overlapR	0.664
+170	Task3strictF	0.029
+171	Task3strictP	0.015
+172	Task3strictR	0.558

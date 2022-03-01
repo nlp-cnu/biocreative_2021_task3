@@ -19,16 +19,16 @@ def implementation(data, lex, stop_words_bool, subwords_bool, pred_name):
     Steps to Implement:
     1) Create list of Tweet objects from file reading, following parameters Tweet(twid, userid, created, text)
     """
-    # if data == "t0":
-    #     fpath = os.path.join("../../data", "BioCreative_TrainTask3.tsv")
-    # elif data == "t1":
-    #     fpath = os.path.join("../../data", "BioCreative_TrainTask3.1.tsv")
-    # elif data == "val":
-    #     fpath = os.path.join("../../data", "BioCreative_ValTask3.tsv")
-    # else:
-    #     print("Incorrect data: Use t0, t1, or val")
-    #     return
-    fpath = data
+    if data == "t0":
+        fpath = os.path.join("data", "BioCreative_TrainTask3.tsv")
+    elif data == "t1":
+        fpath = os.path.join("data", "BioCreative_TrainTask3.1.tsv")
+    elif data == "val":
+        fpath = os.path.join("data", "BioCreative_ValTask3.tsv")
+    else:
+        print("Incorrect data: Use t0, t1, or val")
+        return
+    # fpath = data
 
     twt_list = []
     with open(fpath, 'rt', encoding=("utf")) as twt_file:
@@ -45,23 +45,23 @@ def implementation(data, lex, stop_words_bool, subwords_bool, pred_name):
     """
 
     #make directories
-    if not os.path.isdir(os.path.join("..", "predictions")):
-         os.mkdir(os.path.join("..", "predictions"))
+    if not os.path.isdir(os.path.join("predictions")):
+         os.mkdir(os.path.join("predictions"))
 
     #TODO - BELOW MUST BE FIXED TO ACCOUNT FOR lexicons DIRECTORY
     if lex == "Training":
-        dict_file = os.path.join("..", "lexicons", "Training_only.csv")
-        pred_dir = os.path.join("..", "predictions", "training_as_dict")
+        dict_file = os.path.join("lexicons", "Training_only.csv")
+        pred_dir = os.path.join("predictions", "training_as_dict")
         if not os.path.isdir(pred_dir):
             os.mkdir(pred_dir)
     elif lex == "RXNORM":
-        dict_file = os.path.join("..", "RXNORM_only.csv")
-        pred_dir = os.path.join("..", "predictions", "rxnorm_as_dict")
+        dict_file = os.path.join("lexicons", "RXNORM_only.csv")
+        pred_dir = os.path.join("predictions", "rxnorm_as_dict")
         if not os.path.isdir(pred_dir):
             os.mkdir(pred_dir)
     elif lex == "Both":
-        dict_file = os.path.join("..", "Training_and_RXNORM.csv")
-        pred_dir = os.path.join("..", "predictions", "both_as_dict")
+        dict_file = os.path.join("lexicons", "Training_and_RXNORM.csv")
+        pred_dir = os.path.join("predictions", "both_as_dict")
         if not os.path.isdir(pred_dir):
             os.mkdir(pred_dir)
     else:
@@ -69,10 +69,10 @@ def implementation(data, lex, stop_words_bool, subwords_bool, pred_name):
         return
 
     run = Dataset(twt_list, dict_file, '\n')
-    with open("../config/lex.txt", "wt") as l:
-        for item in run.lexicon:
-            l.write(item+"\n")
-        l.close()
+    # with open("../config/lex.txt", "wt") as l:
+    #     for item in run.lexicon:
+    #         l.write(item+"\n")
+    #     l.close()
     """
     3) Call Dataset.check() to perform check on all tweets using lexicons, updating each
         positive result with necessary info, and setting tweet.contains_drug = True

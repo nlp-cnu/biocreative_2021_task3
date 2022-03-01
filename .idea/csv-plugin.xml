@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="/lexicon_app/evalFix/score_logCSV.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/lexicon_app/lexicons/RXNORM_only.csv">
           <value>
             <Attribute>

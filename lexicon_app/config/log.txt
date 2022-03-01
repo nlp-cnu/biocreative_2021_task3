@@ -1,3 +1,6 @@
+ConfigPred.tsv	Training	False	False	# of positive results: 110/89002
+ConfigPred.tsv	Training	False	True	# of positive results: 191/89002
+ConfigPred.tsv	Training	True	False	# of positive results: 225/89002
 ConfigPred.tsv	Training	True	True	# of positive results: 438/89002
 Task3overlapF:0.480
 Task3overlapP:0.764
@@ -5,3 +8,21 @@ Task3overlapR:0.350
 Task3strictF:0.417
 Task3strictP:0.664
 Task3strictR:0.304
+Task3overlapF:0.399
+Task3overlapP:0.413
+Task3overlapR:0.386
+Task3strictF:0.326
+Task3strictP:0.338
+Task3strictR:0.315
+Task3overlapF:0.679
+Task3overlapP:0.775
+Task3overlapR:0.604
+Task3strictF:0.610
+Task3strictP:0.696
+Task3strictR:0.543
+Task3overlapF:0.442
+Task3overlapP:0.345
+Task3overlapR:0.616
+Task3strictF:0.392
+Task3strictP:0.306
+Task3strictR:0.547

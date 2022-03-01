@@ -20,7 +20,9 @@ implementation(data, lex, stop_words_bool, subwords_bool, pred_name):
 #     os.mkdir(os.path.join(rxnorm_as_dict, i))
 #     os.mkdir(os.path.join(both_as_dict, i))
 if __name__ == "__main__":
-    log = os.path.join("lexicon_app", "lexicon_app/data_log.txt")
+    log = "data_log.txt"
+    with open(log, "r") as file:
+        file.close()
     with open(log, "w") as file:
         file.write("NAME\tLEXICON\tSTOP WORDS\tSUBWORDS\tRESULTS\n")
         file.close()
@@ -28,27 +30,39 @@ if __name__ == "__main__":
     with open(log, "a") as file:
         # FOR REFERENCE: implementation(data, lex, stop_words_bool, subwords_bool, pred_name)
 
-        #### Test without subword matching
-        file.write(implementation("t0", "Training", False, False, "Train3.tsv"))
-        file.write(implementation("t0", "Training", True, False, "Train3.tsv"))
+        for dict in ["Training", "RXNORM", "Both"]:
+            file.write(implementation("t0", dict, False, False, "Train3.tsv"))
+            file.write(implementation("t0", dict, False, True, "Train3.tsv"))
+            file.write(implementation("t0", dict, True, False, "Train3.tsv"))
+            file.write(implementation("t0", dict, True, True, "Train3.tsv"))
 
-        file.write(implementation("val", "Training", False, False, "Val3.tsv"))
-        file.write(implementation("val", "Training", True, False, "Val3.tsv"))
-
-        file.write(implementation("t0", "RXNORM", False, False, "Train3.tsv"))
-        file.write(implementation("t0", "RXNORM", True, False, "Train3.tsv"))
-
-        file.write(implementation("val", "RXNORM", False, False, "Val3.tsv"))
-        file.write(implementation("val", "RXNORM", True, False, "Val3.tsv"))
-
-        file.write(implementation("t0", "Both", False, False, "Train3.tsv"))
-        file.write(implementation("t0", "Both", True, False, "Train3.tsv"))
-
-        file.write(implementation("val", "Both", False, False, "Val3.tsv"))
-        file.write(implementation("val", "Both", True, False, "Val3.tsv"))
+            file.write(implementation("val", dict, False, False, "Val3.tsv"))
+            file.write(implementation("val", dict, False, True, "Val3.tsv"))
+            file.write(implementation("val", dict, True, False, "Val3.tsv"))
+            file.write(implementation("val", dict, True, True, "Val3.tsv"))
 
 
-        #### Test with subword matching
+
+        # file.write(implementation("t0", "Training", False, False, "Train3.tsv"))
+        # file.write(implementation("t0", "Training", True, False, "Train3.tsv"))
+        #
+        # file.write(implementation("val", "Training", False, False, "Val3.tsv"))
+        # file.write(implementation("val", "Training", True, False, "Val3.tsv"))
+        #
+        # file.write(implementation("t0", "RXNORM", False, False, "Train3.tsv"))
+        # file.write(implementation("t0", "RXNORM", True, False, "Train3.tsv"))
+        #
+        # file.write(implementation("val", "RXNORM", False, False, "Val3.tsv"))
+        # file.write(implementation("val", "RXNORM", True, False, "Val3.tsv"))
+        #
+        # file.write(implementation("t0", "Both", False, False, "Train3.tsv"))
+        # file.write(implementation("t0", "Both", True, False, "Train3.tsv"))
+        #
+        # file.write(implementation("val", "Both", False, False, "Val3.tsv"))
+        # file.write(implementation("val", "Both", True, False, "Val3.tsv"))
+        #
+        #
+        # #### Test with subword matching
         # file.write(implementation("t0", "Training", False, True, "Train3.tsv"))
         # file.write(implementation("t0", "Training", True, True, "Train3.tsv"))
         #
