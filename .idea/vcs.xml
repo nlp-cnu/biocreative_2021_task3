@@ -4,5 +4,6 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/BioCreative-T3" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/biocreative_2021_task3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ml_approach/keras_examples" vcs="Git" />
   </component>
 </project>

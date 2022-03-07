@@ -21,12 +21,9 @@ Install Dependencies (only needs to get run once)
 
 """Set Up Drive and Mount Keras Examples"""
 
-from google.colab import drive
-drive.mount('/content/drive')
 
 import sys
 import csv
-sys.path.insert(0,'/content/drive/My Drive/NER_Colab/keras_examples/')
 
 
 from Classifier import *
@@ -121,94 +118,94 @@ class My_Custom_Classifier(Binary_Text_Classifier):
         )
 
 """Set up and run the experment"""
+if __name__ == "__main__":
+    # training parameters
+    max_epoch = 100
+    batch_size = 200
+    early_stopping_patience = 5
+    early_stopping_monitor = 'f1'
 
-# training parameters
-max_epoch = 100
-batch_size = 200
-early_stopping_patience = 5
-early_stopping_monitor = 'f1'
+    # model hyperparameters
+    learning_rate = 0.01
+    dropout_rate = 0.8
+    language_model_trainable = True
 
-# model hyperparameters
-learning_rate = 0.01
-dropout_rate = 0.8
-language_model_trainable = True
+    # parameters to load and save a model
+    model_in_file_name = "my_models/model_out_trainable_true" # to load a model, need to uncomment some code below
+    model_out_file_name = "/content/drive/My Driver/NER_Colab/my_models/modelout" # to save a model, need to uncomment some code below
 
-# parameters to load and save a model
-model_in_file_name = "my_models/model_out_trainable_true" # to load a model, need to uncomment some code below
-model_out_file_name = "/content/drive/My Driver/NER_Colab/my_models/modelout" # to save a model, need to uncomment some code below
+    #set up the language model
+    # language_model_name = '/content/drive/My Drive/colab_stuff/models/NCBI_BERT_pubmed_mimic_uncased_L-12_H-768_A-12'
+    language_model_name = 'bert-base-uncased'
+    max_length = 512
 
-#set up the language model
-# language_model_name = '/content/drive/My Drive/colab_stuff/models/NCBI_BERT_pubmed_mimic_uncased_L-12_H-768_A-12'
-language_model_name = 'bert-base-uncased'
-max_length = 512
+    #load the dataset
+    #data_filepath = '/content/drive/My Drive/Student_Research/Relationship_Extraction/i2b2_training_data/keras_converted_format/i2b2_converted_filtered.tsv'
+    #data_filepath = '/content/drive/My Drive/colab_stuff/data/i2b2_relex/i2b2_converted.tsv'
+    data_filepath = '/content/drive/My Drive/NER_Colab/BioCreative_TrainTask3.tsv'
 
-#load the dataset
-#data_filepath = '/content/drive/My Drive/Student_Research/Relationship_Extraction/i2b2_training_data/keras_converted_format/i2b2_converted_filtered.tsv'
-#data_filepath = '/content/drive/My Drive/colab_stuff/data/i2b2_relex/i2b2_converted.tsv'
-data_filepath = '/content/drive/My Drive/NER_Colab/BioCreative_TrainTask3.tsv'
+    num_classes = 1
+    data = NERDataset(data_filepath, validation_set_size=0.2)
+    #data = i2b2Dataset(data_filepath)
+    #exit()
 
-num_classes = 1
-data = NERDataset(data_filepath, validation_set_size=0.2)
-#data = i2b2Dataset(data_filepath)
-#exit()
+    train_x, train_y = data.get_train_data()
+    val_x, val_y = data.get_validation_data()
 
-train_x, train_y = data.get_train_data()
-val_x, val_y = data.get_validation_data()
+    #TODO @john - next, you need to do some hyperparameter tuning to optimize the performance of your model
 
-#TODO @john - next, you need to do some hyperparameter tuning to optimize the performance of your model
+    # learning_rates = [0.000001, 0.00001,  0.0001, 0.001, 0.01, 0.1]
+    learning_rates = [0.000001]
+    # dropout_rates = [0.0, 0.4, 0.8]
+    dropout_rates = [0.0]
+    for lr in learning_rates:
+      for dropout in dropout_rates:
+        print("Classifier with lr = " + str(lr) + ", " + " dropout_rate = " + str(dropout))
+    # .   classifier = create classifier   (pass in params)
+        classifier = My_Custom_Classifier(language_model_name, num_classes,
+                                            max_length=max_length,
+                                            learning_rate=lr,
+                                            language_model_trainable=language_model_trainable,
+                                            dropout_rate=dropout)
 
-# learning_rates = [0.000001, 0.00001,  0.0001, 0.001, 0.01, 0.1]
-learning_rates = [0.0000001]
-# dropout_rates = [0.0, 0.4, 0.8]
-dropout_rates = [0.0]
-for lr in learning_rates:
-  for dropout in dropout_rates:
-    print("Classifier with lr = " + str(lr) + ", " + " dropout_rate = " + str(dropout))
-# .   classifier = create classifier   (pass in params)
-    classifier = My_Custom_Classifier(language_model_name, num_classes,
-                                        max_length=max_length,
-                                        learning_rate=lr,
-                                        language_model_trainable=language_model_trainable,
-                                        dropout_rate=dropout)
+        # # classifier.train(pass in params)
+        # classifier.train(train_x, train_y,
+        #             validation_data=(val_x, val_y),
+        #             model_out_file_name=model_out_file_name,
+        #             epochs=max_epoch)
+        classifier.train(train_x, train_y,
+                      validation_data=(val_x, val_y),
+                      epochs=max_epoch,
+                      batch_size=batch_size,
+                      # model_out_file_name=model_out_file_name,
+                      # early_stopping_patience=5,
+                      # early_stopping_monitor=early_stopping_monitor,
+                      class_weights=data.get_train_class_weights()
+        )
 
-    # # classifier.train(pass in params)
+
+    #create classifier and load data for a multiclass text classifier
+
+
+    #load a model's weights from file, use this code
+    #classifier.load_weights(model_in_file_name)
+
+    # #get the training data
+    # train_x, train_y = data.get_train_data()
+    # val_x, val_y = data.get_validation_data()
+
+
+    # #train the model
+    # # If you want to save model weights, use below.
+    # #classifier.train(train_x, train_y,
+    # #                 validation_data=(val_x, val_y),
+    # #                 model_out_file_name=model_out_file_name,
+    # #                 epochs=max_epoch)
     # classifier.train(train_x, train_y,
-    #             validation_data=(val_x, val_y),
-    #             model_out_file_name=model_out_file_name,
-    #             epochs=max_epoch)
-    classifier.train(train_x, train_y,
-                  validation_data=(val_x, val_y),
-                  epochs=max_epoch,
-                  batch_size=batch_size,
-                  # model_out_file_name=model_out_file_name,
-                  # early_stopping_patience=5, 
-                  # early_stopping_monitor=early_stopping_monitor,
-                  class_weights=data.get_train_class_weights()
-    )
-
-
-#create classifier and load data for a multiclass text classifier
-    
-
-#load a model's weights from file, use this code
-#classifier.load_weights(model_in_file_name)
-
-# #get the training data
-# train_x, train_y = data.get_train_data()
-# val_x, val_y = data.get_validation_data()
-
-
-# #train the model
-# # If you want to save model weights, use below.
-# #classifier.train(train_x, train_y,
-# #                 validation_data=(val_x, val_y),
-# #                 model_out_file_name=model_out_file_name,
-# #                 epochs=max_epoch)
-# classifier.train(train_x, train_y,
-#                   validation_data=(val_x, val_y),
-#                   epochs=max_epoch,
-#                   batch_size=batch_size,
-#                   #model_out_file_name=model_out_file_name,
-#                   early_stopping_patience=5, early_stopping_monitor=early_stopping_monitor,
-#                   # class_weights=data.get_train_class_weights()
-# )
+    #                   validation_data=(val_x, val_y),
+    #                   epochs=max_epoch,
+    #                   batch_size=batch_size,
+    #                   #model_out_file_name=model_out_file_name,
+    #                   early_stopping_patience=5, early_stopping_monitor=early_stopping_monitor,
+    #                   # class_weights=data.get_train_class_weights()
+    # )
