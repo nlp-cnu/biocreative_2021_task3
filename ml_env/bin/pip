@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/home/jackmadaj/Documents/NLP Projects/biocreative_2021_task3/ml_env/bin/python3" "$0" "$@"
-' '''
+#!/home/john/Documents/NLP/biocreative_2021_task3/ml_env/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
