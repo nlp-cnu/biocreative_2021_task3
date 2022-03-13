@@ -62,20 +62,20 @@ if __name__ == "__main__":
 
     results = []
     for i in outputread:
-        # lr, droput, epoch, scores
 
         init = i.pop(0).split()
         results.append(Result(float(init[4][:-1]), float(init[-1].upper())))
         while i:  # remainder of strings in list are pairs of 2, Epoch string and scores string
             epoch = int(i.pop(0).split()[1][:-4])
-            # print(epoch)
             scores = i.pop(0).split()
             loss = float(scores[scores.index(prefix + "loss:") + 1])
             f1 = float(scores[scores.index(prefix + "f1_score:") + 1])
-            # print(loss, f1)
-            # precision = float(scores[scores.index(prefix + "f1_score:") + 1])
-            # # recall =
-            precision, recall = 0, 0
+            precision, recall = "did not find", "did not find"
+            for s in scores:
+                if s[:9] == "precision":
+                    precision = scores[scores.index(s)+1]
+                if s[0:6] == "recall":
+                    recall = scores[scores.index(s)+1]
             results[-1].update(epoch, loss, f1, precision, recall)
 
     print("RESULTS:")
@@ -86,5 +86,5 @@ if __name__ == "__main__":
     for i in results:
         if i > bestf1:
             bestf1 = i
-    print("Best F1 performance below:\n", bestf1.output())
+    print("Best F1 performance below:\n", bestf1.name(), bestf1.output())
 
