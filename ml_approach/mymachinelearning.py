@@ -25,9 +25,9 @@ Install Dependencies (only needs to get run once)
 import sys
 import csv
 
-
-from Classifier import *
-from Dataset import *
+import transformers as tf
+from keras_examples.Classifier import *
+from keras_examples.Dataset import *
 import pandas as pd
 import tensorflow_addons as tfa
 
@@ -142,7 +142,9 @@ if __name__ == "__main__":
     #load the dataset
     #data_filepath = '/content/drive/My Drive/Student_Research/Relationship_Extraction/i2b2_training_data/keras_converted_format/i2b2_converted_filtered.tsv'
     #data_filepath = '/content/drive/My Drive/colab_stuff/data/i2b2_relex/i2b2_converted.tsv'
-    data_filepath = '/content/drive/My Drive/NER_Colab/BioCreative_TrainTask3.tsv'
+    # data_filepath = '/content/drive/My Drive/NER_Colab/BioCreative_TrainTask3.tsv'
+    data_filepath = '../data/BioCreative_TrainTask3.tsv'
+
 
     num_classes = 1
     data = NERDataset(data_filepath, validation_set_size=0.2)
@@ -154,10 +156,15 @@ if __name__ == "__main__":
 
     #TODO @john - next, you need to do some hyperparameter tuning to optimize the performance of your model
 
+    """
+    Best F1 performance below:
+ lr: 0.000100, dropout: 0.800000
+    """
+
     # learning_rates = [0.000001, 0.00001,  0.0001, 0.001, 0.01, 0.1]
-    learning_rates = [0.000001]
+    learning_rates = [0.0001]
     # dropout_rates = [0.0, 0.4, 0.8]
-    dropout_rates = [0.0]
+    dropout_rates = [0.8]
     for lr in learning_rates:
       for dropout in dropout_rates:
         print("Classifier with lr = " + str(lr) + ", " + " dropout_rate = " + str(dropout))
