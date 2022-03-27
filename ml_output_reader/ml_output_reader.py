@@ -44,19 +44,21 @@ if __name__ == "__main__":
         prefix = ""
         print("comparing non-validation results")
 
-    outputfile = "nohup_run_hyperparam_tuning"
+    # outputfile = "nohup_run_hyperparam_tuning"
+    outputfile = "../ml_approach/out/1:2.txt"
     outputread = []
     with open(outputfile, "rt") as file:
         for line in file:
             g = line.strip()
             if g.split()[0] == "Classifier":
                 outputread.append([])
-            if g.split()[0] in ["Classifier", "Epoch", "357/357"]:
+            if g.split()[0] in ["Classifier", "Epoch", "2/2"]:
                 outputread[-1].append(g)
 
     for index, sublist in enumerate(outputread):
         for subindex, item in enumerate(sublist):
-            if item.split()[0] not in ["Classifier", "Epoch", "357/357"]:
+            print(item.split())
+            if item.split()[0] not in ["Classifier", "Epoch", "2/2"]:
                 print("\t\t", outputread[index][subindex])
                 outputread[index].pop(subindex)
 
